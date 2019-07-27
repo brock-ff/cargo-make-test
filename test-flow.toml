@@ -1,0 +1,43 @@
+extend = "tests/another-flow.toml"
+
+[tasks.test1]
+command = "cargo"
+args = ["test", "--", "--nocapture", "--ignored", "--exact", "tests::it_increments_thing_1"]
+
+[tasks.test2]
+command = "cargo"
+args = ["test", "--", "--nocapture", "--ignored", "--exact", "tests::it_increments_thing_2"]
+dependencies = ["test1"]
+
+[tasks.test3]
+command = "cargo"
+args = ["test", "--", "--nocapture", "--ignored", "--exact", "tests::it_increments_thing_3"]
+dependencies = ["test2"]
+
+[tasks.test4]
+command = "cargo"
+args = ["test", "--", "--nocapture", "--ignored", "--exact", "tests::it_increments_thing_4"]
+dependencies = ["test3"]
+
+[tasks.test-suite]
+dependencies = ["test4"]
+
+# init is a specially-named task that runs first and must be in THIS FILE
+[tasks.init]
+script = [
+    "echo SIMULATING INIT...",
+    "sleep 1",
+    "echo DONE."
+]
+
+[tasks.main]
+dependencies = [
+    "build",
+    "test-suite"
+]
+
+[tasks.other]
+dependencies = [
+    "build",
+    "test420"
+]

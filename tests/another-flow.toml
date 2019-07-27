@@ -1,0 +1,5 @@
+# pretend this is in another crate or something...
+
+[tasks.test-4-20]
+command = "cargo"
+args = ["test", "--", "--nocapture", "--ignored", "--exact", "tests::it_increments_thing_4_20"]

@@ -1,0 +1,13 @@
+[tasks.clean]
+command = "cargo"
+args = ["clean"]
+
+[tasks.build]
+description = "compiles code"
+category = "Build"
+command = "cargo"
+args = [
+    "build",
+    "--all-features"
+]
+dependencies = ["clean"]
