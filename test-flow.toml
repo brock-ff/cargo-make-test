@@ -39,5 +39,5 @@ dependencies = [
 [tasks.other]
 dependencies = [
     "build",
-    "test420"
+    "test-4-20"
 ]
